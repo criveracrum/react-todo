@@ -1,15 +1,9 @@
 import React, {useState} from 'react'
 
-export default function Todo ({ title, description, dateCreated, index, dispatch}) { 
-     const [complete, setComplete] = useState(false)
-     const [dateCompleted, setDateComplete] = useState('')
+export default function Todo ({ title, description, dateCreated, complete, dateCompleted, index, dispatch}) { 
+    
      
 
-     function handleCompleteChange(evt) {       
-          setComplete(!complete)
-          const now = new Date(Date.now())
-          setDateComplete(now.toDateString())
-      }
       
      
      if (complete) {
@@ -23,6 +17,8 @@ export default function Todo ({ title, description, dateCreated, index, dispatch
           <i>Date Created:<b>{dateCreated}</b></i>
           <br />
           <i>Date Completed:<b>{dateCompleted}</b></i>
+          <br />
+          <button onClick={e => { dispatch({type: "DELETE_TODO", index});} } >DELETE </button>
           
       </div>
           )
@@ -34,8 +30,10 @@ export default function Todo ({ title, description, dateCreated, index, dispatch
                   <br />
                   <i>Date Created:<b>{dateCreated}</b></i>
                   <br />
-                  <input type="checkbox" id="completeCheck" onChange={handleCompleteChange} />
-                  <label for="completeCheck"> Task Completed? </label><br></br>
+                  <input type="checkbox" id="completeCheck" onChange={e => { dispatch({type: "TOGGLE_TODO", index});} }/>
+                  <label htmlFor="completeCheck"> Task Completed? </label><br></br>
+                  <br />
+                  <button onClick={e => {dispatch({type: "DELETE_TODO", index});} } >DELETE </button>
               </div> 
          )
      }
