@@ -10,9 +10,24 @@ function userReducer (state, action) {
     }
 }
 
+function todoReducer (state, action) {
+    switch (action.type) {
+        case 'CREATE_TODO':
+          const newTodo= { 
+              title: action.title,
+              description: action.description, 
+              dateCompleted: action.dateString 
+            }
+            return [ newTodo, ...state ]
+        default:
+           return state;
+    }
+  }
+
 
 export default function appReducer (state, action) {
     return {
         user: userReducer(state.user, action),
+        todos: todoReducer(state.todos, action)
     }
 }

@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
 
-export default function Todo ({ title, description, dateCreated}) { 
+export default function Todo ({ title, description, dateCreated, index, dispatch}) { 
      const [complete, setComplete] = useState(false)
      const [dateCompleted, setDateComplete] = useState('')
+     
 
      function handleCompleteChange(evt) {       
           setComplete(!complete)
@@ -14,19 +15,21 @@ export default function Todo ({ title, description, dateCreated}) {
      if (complete) {
           return (
                <div>
-          <h3>{title}</h3>
+          <h3>{index}. {title}</h3>
           
           <div>{description}</div>
+          
           <br />
           <i>Date Created:<b>{dateCreated}</b></i>
           <br />
           <i>Date Completed:<b>{dateCompleted}</b></i>
+          
       </div>
           )
      } else {
           return (
                <div>
-                  <h3>{title}</h3>
+                  <h3>{index}. {title}</h3>
                   <div>{description}</div>
                   <br />
                   <i>Date Created:<b>{dateCreated}</b></i>

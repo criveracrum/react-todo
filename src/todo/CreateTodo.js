@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Todo from './Todo'
 
-export default function CreateTodo ({user}) {
+export default function CreateTodo ({user, dispatch}) {
 
-    const description = ''
-    const title = ''
+    const [dateString, setDate] = useState('')
+    const [description, setDescription] = useState('')
+    const [ title, setTitle ] = useState('')
+
 
     function handleTodoSubmit(evt){
         
@@ -17,22 +19,25 @@ export default function CreateTodo ({user}) {
         }
     }
     function onDescriptionChange(evt){
-        this.description = evt.target.value;
+        setDescription(evt.target.value);
+
     }
     function onTitleChange(evt){
-        this.title = evt.target.value;
+        setTitle(evt.target.value);
+        const today = new Date(Date.now());
+        setDate(today.toDateString());
     }
 
      return (
-          <form onSubmit={e => e.preventDefault()}>  
+          <form onSubmit={e => {e.preventDefault(); dispatch({type: "CREATE_TODO", title, description, dateString});}}>  
              <div>
                  <label htmlFor="create-title">Title:</label>
-                 <input type="text" name="create-title" id="create-title" onChange="onTitleChange" required/>
+                 <input type="text" name="create-title" id="create-title" onChange={onTitleChange} required/>
              </div>
              <div>
                  <label htmlFor="create-description">Description:</label>
                  <br />
-                 <textarea onChange="onDescriptionChange"/>
+                 <textarea onChange={onDescriptionChange}/>
              </div>
              <input type="submit" value="Create" />
          </form>   
