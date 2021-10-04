@@ -31,6 +31,7 @@ export default function CreateTodo ({user, dispatch}) {
      return (
           <form onSubmit={e => {e.preventDefault(); dispatch({type: "CREATE_TODO", title, description, dateString});}}>  
              <div>
+                 <h4>Creator: {user}</h4>
                  <label htmlFor="create-title">Title:</label>
                  <input type="text" name="create-title" id="create-title" onChange={onTitleChange} required/>
              </div>
