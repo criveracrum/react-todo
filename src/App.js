@@ -1,6 +1,10 @@
+import {useState, useReducer, useEffect} from 'react';
+
 import UserBar from "./user/UserBar";
 import TodoList from "./todo/TodoList";
 import CreateTodo from "./todo/CreateTodo";
+import appReducer from './Reducers';
+import react from 'react'
 
 function App() {
   const date = new Date(Date.now())
@@ -26,10 +30,25 @@ function App() {
       dateCreated: date.toDateString()
     }
   ]
+
+  const [ state, dispatchUser ] = useReducer(appReducer, { user: ''})
+
+  const {user} = state;
+
+
+
+  useEffect(() => {
+    if (user) {
+       document.title = `${user}’s Blog` 
+     } else {
+       document.title = 'Blog'
+   }
+  }, [user])
+
   return (<div>
-            <UserBar />
+            <UserBar user={user} dispatchUser={dispatchUser}/>
             <br/><br/><hr/><br/>
-            <CreateTodo />
+            {user && <CreateTodo />}
             <TodoList todos={todos}/>
         </div>
   )
