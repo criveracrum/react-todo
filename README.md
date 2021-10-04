@@ -2,4 +2,5 @@
 
 A simple React app to manage a Todo List.
 
-<img width="861" alt="Screen Shot 2021-09-24 at 11 41 54 AM" src="https://user-images.githubusercontent.com/48604778/134711128-5d2a6398-db34-4aeb-83ae-ac28db32ded3.png">
+
+<img width="767" alt="Screen Shot 2021-10-03 at 10 32 54 PM" src="https://user-images.githubusercontent.com/48604778/135790043-50c39f52-91bb-4b54-860c-e58832fe74e5.png">
