@@ -27,6 +27,8 @@ function todoReducer (state, action) {
              
         case 'DELETE_TODO':
             return state.filter((todo,i) => i !== action.index);
+        case 'FETCH_TODOS':
+            return action.todos
         default:
            return state;
     }

@@ -1,0 +1,41 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "Dishes",
+      "description": "Please wash the dishes. They are filthy.",
+      "dateCreated": "Mon Oct 18 2021"
+    },
+    {
+      "id": 2,
+      "title": "Homework",
+      "description": "Do you homework for CSC436",
+      "dateCreated": "Mon Oct 18 2021"
+    },
+    {
+      "id": 3,
+      "title": "Workout",
+      "description": "You know its good for your health.",
+      "dateCreated": "Mon Oct 18 2021"
+    },
+    {
+      "id": 4,
+      "title": "Prep for Winter",
+      "description": "",
+      "dateCreated": "Mon Oct 18 2021"
+    },
+    {
+      "title": "Test1",
+      "description": "This is new. I hope.",
+      "dateCreated": "Tue Oct 19 2021",
+      "id": 5
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "paul",
+      "password": "badpassword"
+    }
+  ]
+}
