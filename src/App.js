@@ -1,4 +1,5 @@
-import {useState, useReducer, useEffect} from 'react';
+import React, {useState, useReducer, useEffect} from 'react';
+import { useResource } from 'react-request-hook';
 
 import UserBar from "./user/UserBar";
 import TodoList from "./todo/TodoList";
@@ -7,32 +8,21 @@ import appReducer from './Reducers';
 import { StateContext } from './Contexts';
 
 function App() {
-  const date = new Date(Date.now())
-  const initialTodos = [
-    {
-      title: "Dishes",
-      description: "Please wash the dishes. They are filthy.",
-      dateCreated: date.toDateString()
-    },
-    {
-      title: "Homework",
-      description: "Do you homework for CSC436",
-      dateCreated: date.toDateString()
-    },
-    {
-      title: "Workout",
-      description: "You know its good for your health.",
-      dateCreated: date.toDateString()
-    },
-    {
-      title: "Prep for Winter",
-      description: "",
-      dateCreated: date.toDateString()
+
+  const [ todos, getTodos ] = useResource(() => ({
+    url: '/todos',
+    method: 'get'
+  }))
+
+  const [ state, dispatch ] = useReducer(appReducer, { user: '', todos: []})
+
+  useEffect(getTodos, [])
+
+  useEffect(() => {
+    if (todos && todos.data) {
+        dispatch({ type: 'FETCH_TODOS', todos: todos.data })
     }
-  ]
-
-  const [ state, dispatch ] = useReducer(appReducer, { user: '', todos: initialTodos})
-
+}, [todos])
 
   const {user} = state;
 
