@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
+import { StateContext } from '../Contexts';
 
-export default function Todo ({ title, description, dateCreated, complete, dateCompleted, index, dispatch}) { 
+export default function Todo ({ title, description, dateCreated, complete, dateCompleted, index}) { 
     
-     
+     const {dispatch} = useContext(StateContext);
 
       
      

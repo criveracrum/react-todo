@@ -1,23 +1,17 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import Todo from './Todo'
+import { StateContext } from '../Contexts'
 
-export default function CreateTodo ({user, dispatch}) {
+export default function CreateTodo () {
+
+    const {state, dispatch} = useContext(StateContext)
+    const {user} = state
 
     const [dateString, setDate] = useState('')
     const [description, setDescription] = useState('')
     const [ title, setTitle ] = useState('')
 
 
-    function handleTodoSubmit(evt){
-        
-        if (title){
-            alert('Title required')
-        } else {
-            const today = new Date(Date.now())
-            const newTodo = new Todo(this.title, this.description, today.toDateString())
-            alert('Todo was submitted' + newTodo)
-        }
-    }
     function onDescriptionChange(evt){
         setDescription(evt.target.value);
 

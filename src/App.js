@@ -34,7 +34,7 @@ function App() {
   const [ state, dispatch ] = useReducer(appReducer, { user: '', todos: initialTodos})
 
 
-  const {user, todos} = state;
+  const {user} = state;
 
 
 
@@ -50,8 +50,8 @@ function App() {
           <StateContext.Provider value={{state: state, dispatch: dispatch}}> 
             <UserBar/>
             <br/><br/><hr/><br/>
-            {user && <CreateTodo user={user} dispatch={dispatch}/>}
-            <TodoList todos={todos} dispatch={dispatch}/>
+            {user && <CreateTodo/>}
+            <TodoList/>
           </StateContext.Provider>
         </div>
   )
