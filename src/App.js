@@ -4,8 +4,7 @@ import UserBar from "./user/UserBar";
 import TodoList from "./todo/TodoList";
 import CreateTodo from "./todo/CreateTodo";
 import appReducer from './Reducers';
-
-import react from 'react'
+import { StateContext } from './Contexts';
 
 function App() {
   const date = new Date(Date.now())
@@ -48,10 +47,12 @@ function App() {
   }, [user])
 
   return (<div>
-            <UserBar user={user} dispatchUser={dispatch}/>
+          <StateContext.Provider value={{state: state, dispatch: dispatch}}> 
+            <UserBar/>
             <br/><br/><hr/><br/>
             {user && <CreateTodo user={user} dispatch={dispatch}/>}
             <TodoList todos={todos} dispatch={dispatch}/>
+          </StateContext.Provider>
         </div>
   )
 }
