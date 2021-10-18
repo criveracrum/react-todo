@@ -1,5 +1,4 @@
 import React, {useState, useContext} from 'react'
-import Todo from './Todo'
 import { StateContext } from '../Contexts'
 
 export default function CreateTodo () {

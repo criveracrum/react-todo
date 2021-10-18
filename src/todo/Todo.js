@@ -10,7 +10,7 @@ export default function Todo ({ title, description, dateCreated, complete, dateC
      if (complete) {
           return (
                <div>
-          <h3>{index}. {title}</h3>
+          <h3>{index+1}. {title}</h3>
           
           <div>{description}</div>
           
@@ -26,7 +26,7 @@ export default function Todo ({ title, description, dateCreated, complete, dateC
      } else {
           return (
                <div>
-                  <h3>{index}. {title}</h3>
+                  <h3>{index+1}. {title}</h3>
                   <div>{description}</div>
                   <br />
                   <i>Date Created:<b>{dateCreated}</b></i>
