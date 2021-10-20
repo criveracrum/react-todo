@@ -24,7 +24,7 @@ export default function Todo ({ title, description, dateCreated, complete, dateC
 
      function handleUpdate(){
           const now = new Date(Date.now());
-          updateTodo({ complete: complete, dateCompleted: now.toDateString()})
+          updateTodo({ complete: true, dateCompleted: now.toDateString()})
           dispatch({type: "TOGGLE_TODO", id: id})
      }
 

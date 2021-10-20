@@ -23,6 +23,14 @@
       "complete": true,
       "dateCompleted": "Tue Oct 19 2021",
       "id": 3
+    },
+    {
+      "title": "Test Post",
+      "description": "This is a newly created post.",
+      "dateCreated": "Wed Oct 20 2021",
+      "complete": true,
+      "dateCompleted": "Wed Oct 20 2021",
+      "id": 4
     }
   ],
   "users": [
