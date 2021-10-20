@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import { useResource } from 'react-request-hook';
 import { StateContext } from '../Contexts';
 
@@ -27,6 +27,7 @@ export default function Todo ({ title, description, dateCreated, complete, dateC
           updateTodo({ title, description, dateCreated, complete: true, dateCompleted: now.toDateString()})
           dispatch({type: "TOGGLE_TODO", id})
      }
+
 
      
 

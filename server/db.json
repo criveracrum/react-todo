@@ -23,14 +23,6 @@
       "complete": true,
       "dateCompleted": "Tue Oct 19 2021",
       "id": 3
-    },
-    {
-      "title": "new",
-      "description": "post",
-      "dateCreated": "Tue Oct 19 2021",
-      "complete": false,
-      "dateCompleted": null,
-      "id": 4
     }
   ],
   "users": [
