@@ -32,19 +32,9 @@
       "password": "badpassword"
     },
     {
-      "username": "test",
-      "password": "new",
-      "id": 2
-    },
-    {
       "username": "Chad",
       "password": "test",
-      "id": 3
-    },
-    {
-      "username": "newone",
-      "password": "new",
-      "id": 4
+      "id": 2
     }
   ]
 }

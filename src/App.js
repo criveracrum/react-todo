@@ -8,13 +8,15 @@ import appReducer from './Reducers';
 import { StateContext } from './Contexts';
 
 function App() {
+  
+  const [ state, dispatch ] = useReducer(appReducer, { user: '', todos: []})
 
   const [ todos, getTodos ] = useResource(() => ({
     url: '/todos',
     method: 'get'
   }))
 
-  const [ state, dispatch ] = useReducer(appReducer, { user: '', todos: []})
+
 
   useEffect(getTodos, [])
 
