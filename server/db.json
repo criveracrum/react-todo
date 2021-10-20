@@ -4,25 +4,33 @@
       "id": 1,
       "title": "Dishes",
       "description": "Please wash the dishes. They are filthy.",
-      "dateCreated": "Mon Oct 18 2021"
+      "dateCreated": "Mon Oct 18 2021",
+      "dateCompleted": null,
+      "complete": false
     },
     {
       "id": 2,
       "title": "Homework",
       "description": "Do you homework for CSC436",
-      "dateCreated": "Mon Oct 18 2021"
+      "dateCreated": "Mon Oct 18 2021",
+      "dateCompleted": null,
+      "complete": false
     },
     {
-      "id": 3,
       "title": "Workout",
       "description": "You know its good for your health.",
-      "dateCreated": "Mon Oct 18 2021"
+      "dateCreated": "Mon Oct 18 2021",
+      "complete": true,
+      "dateCompleted": "Tue Oct 19 2021",
+      "id": 3
     },
     {
-      "id": 4,
-      "title": "Prep for Winter",
-      "description": "",
-      "dateCreated": "Mon Oct 18 2021"
+      "title": "new",
+      "description": "post",
+      "dateCreated": "Tue Oct 19 2021",
+      "complete": false,
+      "dateCompleted": null,
+      "id": 4
     }
   ],
   "users": [
@@ -30,6 +38,21 @@
       "id": 1,
       "username": "paul",
       "password": "badpassword"
+    },
+    {
+      "username": "test",
+      "password": "new",
+      "id": 2
+    },
+    {
+      "username": "Chad",
+      "password": "test",
+      "id": 3
+    },
+    {
+      "username": "newone",
+      "password": "new",
+      "id": 4
     }
   ]
 }

@@ -1,9 +1,34 @@
 import React, {useContext, useState} from 'react'
+import { useResource } from 'react-request-hook';
 import { StateContext } from '../Contexts';
 
-export default function Todo ({ title, description, dateCreated, complete, dateCompleted, index}) { 
+export default function Todo ({ title, description, dateCreated, complete, dateCompleted, id, index}) { 
     
      const {dispatch} = useContext(StateContext);
+
+     const [ todo, deleteTodo ] = useResource(() => ({
+          url: `/todos/${id}`,
+          method: 'delete'
+        }))
+
+     const [todo2 , updateTodo ] = useResource(({ title, description, dateCreated, complete, dateCompleted}) => ({
+          url: `/todos/${id}`,
+          method: 'put',
+          data: { title, description, dateCreated, complete, dateCompleted}
+      }))
+     
+     function handleDelete() {
+          dispatch({type: "DELETE_TODO", id})
+          deleteTodo()
+     }
+
+     function handleUpdate(){
+          const now = new Date(Date.now());
+          updateTodo({ title, description, dateCreated, complete: true, dateCompleted: now.toDateString()})
+          dispatch({type: "TOGGLE_TODO", id})
+     }
+
+     
 
       
      
@@ -19,7 +44,7 @@ export default function Todo ({ title, description, dateCreated, complete, dateC
           <br />
           <i>Date Completed:<b>{dateCompleted}</b></i>
           <br />
-          <button onClick={e => { dispatch({type: "DELETE_TODO", index});} } >DELETE </button>
+          <button onClick={e => { handleDelete(); }} >DELETE </button>
           
       </div>
           )
@@ -31,10 +56,10 @@ export default function Todo ({ title, description, dateCreated, complete, dateC
                   <br />
                   <i>Date Created:<b>{dateCreated}</b></i>
                   <br />
-                  <input type="checkbox" id="completeCheck" onChange={e => { dispatch({type: "TOGGLE_TODO", index});} }/>
+                  <input type="checkbox" id="completeCheck" onChange={e => { handleUpdate();} }/>
                   <label htmlFor="completeCheck"> Task Completed? </label><br></br>
                   <br />
-                  <button onClick={e => {dispatch({type: "DELETE_TODO", index});} } >DELETE </button>
+                  <button onClick={e => {handleDelete();} } >DELETE </button>
               </div> 
          )
      }

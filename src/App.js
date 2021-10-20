@@ -20,7 +20,7 @@ function App() {
 
   useEffect(() => {
     if (todos && todos.data) {
-        dispatch({ type: 'FETCH_TODOS', todos: todos.data })
+        dispatch({ type: 'FETCH_TODOS', todos: todos.data.reverse() })
     }
 }, [todos])
 
@@ -35,6 +35,8 @@ function App() {
        document.title = 'Blog'
    }
   }, [user])
+
+
 
   return (<div>
           <StateContext.Provider value={{state: state, dispatch: dispatch}}> 

@@ -17,16 +17,19 @@ function todoReducer (state, action) {
         const newTodo= { 
               title: action.title,
               description: action.description, 
-              dateCreated: action.dateString 
+              dateCreated: action.dateCreated, 
+              id: action.id,
+              dateCompleted: undefined,
+              complete: false
             }
             return [ newTodo, ...state ]
         case 'TOGGLE_TODO':
             const now = new Date(Date.now());
-            return state.map((todo,i) => i  === action.index ? {...todo, complete: !todo.complete,  dateCompleted: now.toDateString()}
+            return state.map((todo,i) => todo.id === action.id ? {...todo, complete: !todo.complete,  dateCompleted: now.toDateString()}
             : todo)
              
         case 'DELETE_TODO':
-            return state.filter((todo,i) => i !== action.index);
+            return state.filter((todo,i) => todo.id !== action.id);
         case 'FETCH_TODOS':
             return action.todos
         default:
