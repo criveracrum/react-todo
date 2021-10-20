@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import { useResource } from 'react-request-hook';
 import { StateContext } from '../Contexts';
 
@@ -6,27 +6,28 @@ export default function Todo ({ title, description, dateCreated, complete, dateC
     
      const {dispatch} = useContext(StateContext);
 
-     const [ todo, deleteTodo ] = useResource(() => ({
+     const [ delTodo, deleteTodo ] = useResource(() => ({
           url: `/todos/${id}`,
           method: 'delete'
         }))
 
-     const [todo2 , updateTodo ] = useResource(({ title, description, dateCreated, complete, dateCompleted}) => ({
+     const [upTodo , updateTodo ] = useResource(({ complete, dateCompleted}) => ({
           url: `/todos/${id}`,
-          method: 'put',
-          data: { title, description, dateCreated, complete, dateCompleted}
+          method: 'patch',
+          data: { complete, dateCompleted}
       }))
      
      function handleDelete() {
-          dispatch({type: "DELETE_TODO", id})
           deleteTodo()
+          dispatch({type: "DELETE_TODO", id: id})
      }
 
      function handleUpdate(){
           const now = new Date(Date.now());
-          updateTodo({ title, description, dateCreated, complete: true, dateCompleted: now.toDateString()})
-          dispatch({type: "TOGGLE_TODO", id})
+          updateTodo({ complete: complete, dateCompleted: now.toDateString()})
+          dispatch({type: "TOGGLE_TODO", id: id})
      }
+
 
      
 

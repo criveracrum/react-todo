@@ -4,13 +4,12 @@ import { StateContext } from '../Contexts'
 
 export default function CreateTodo () {
 
-
-    const {state, dispatch} = useContext(StateContext)
-    const {user} = state
-
     const [dateCreated, setDate] = useState('')
     const [description, setDescription] = useState('')
     const [ title, setTitle ] = useState('')
+
+    const {state, dispatch} = useContext(StateContext)
+    const {user} = state
 
     const [todo , createTodo ] = useResource(({ title, description, dateCreated, complete, dateCompleted}) => ({
         url: '/todos',
@@ -21,12 +20,14 @@ export default function CreateTodo () {
 
     function handleCreate () {
         createTodo({ title, description, dateCreated, complete: false, dateCompleted: null})
+
     }
     useEffect(() => {
         if (todo && todo.data) {
             dispatch({ type: 'CREATE_TODO', title: todo.data.title, description: todo.data.description, dateCreated: todo.data.dateCreated, id: todo.data.id })
         }
     }, [todo])
+
 
     function onDescriptionChange(evt){
         setDescription(evt.target.value);
