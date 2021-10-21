@@ -13,16 +13,22 @@ function userReducer (state, action) {
 function todoReducer (state, action) {
     switch (action.type) {
         case 'CREATE_TODO':
+            const filtered = state.filter((t) => t.id === action.id )
+
+            if (filtered.length === 0) {
+                const newTodo= { 
+                    title: action.title,
+                    description: action.description, 
+                    dateCreated: action.dateCreated, 
+                    id: action.id,
+                    dateCompleted: null,
+                    complete: false
+                    }
+                return [ newTodo, ...state ]
+            }
+            return state;
         
-            const newTodo= { 
-                title: action.title,
-                description: action.description, 
-                dateCreated: action.dateCreated, 
-                id: action.id,
-                dateCompleted: null,
-                complete: false
-                }
-            return [ newTodo, ...state ]
+            
         case 'TOGGLE_TODO':
             const now = new Date(Date.now());
             return state.map((todo) => todo.id === action.id ? {...todo, complete: !todo.complete,  dateCompleted: now.toDateString()}
