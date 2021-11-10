@@ -1,8 +1,10 @@
 import React, {useContext, useState, useEffect} from 'react'
 import { useResource } from 'react-request-hook';
 import { StateContext } from '../Contexts';
+import { Link } from 'react-navi'
+import { Card } from 'react-bootstrap'
 
-export default function Todo ({ title, description, dateCreated, complete, dateCompleted, id, index}) { 
+function Todo ({ title, description, dateCreated, complete, dateCompleted, id, index}) { 
     
      const {dispatch} = useContext(StateContext);
 
@@ -28,40 +30,47 @@ export default function Todo ({ title, description, dateCreated, complete, dateC
           dispatch({type: "TOGGLE_TODO", id: id})
      }
 
-
-     
-
-      
      
      if (complete) {
           return (
-               <div>
-          <h3>{index+1}. {title}</h3>
-          
-          <div>{description}</div>
-          
-          <br />
-          <i>Date Created:<b>{dateCreated}</b></i>
-          <br />
-          <i>Date Completed:<b>{dateCompleted}</b></i>
-          <br />
-          <button onClick={e => { handleDelete(); }} >DELETE </button>
-          
-      </div>
+               <Card>
+               <Card.Body>
+               <Card.Title><Link  href={`/todos/${id}`}>{index+1}. {title}</Link>
+                    </Card.Title>
+                         <Card.Text>
+                              <div>{description}</div>
+                              
+                              <br />
+                              <i>Date Created:<b>{dateCreated}</b></i>
+                              <br />
+                              <i>Date Completed:<b>{dateCompleted}</b></i>
+                              <br />
+                              <button onClick={e => { handleDelete(); }} >DELETE </button>
+                         </Card.Text>
+                    </Card.Body>
+               </Card>
+
           )
      } else {
           return (
-               <div>
-                  <h3>{index+1}. {title}</h3>
-                  <div>{description}</div>
-                  <br />
-                  <i>Date Created:<b>{dateCreated}</b></i>
-                  <br />
-                  <input type="checkbox" id="completeCheck" onChange={e => { handleUpdate();} }/>
-                  <label htmlFor="completeCheck"> Task Completed? </label><br></br>
-                  <br />
-                  <button onClick={e => {handleDelete();} } >DELETE </button>
-              </div> 
+               <Card>
+                    <Card.Body>
+                    <Card.Title><Link  href={`/todos/${id}`}>{index+1}. {title}</Link>
+                    </Card.Title>
+                    <Card.Text>
+                         <div>{description}</div>
+                         <br />
+                         <i>Date Created:<b>{dateCreated}</b></i>
+                         <br />
+                         <input type="checkbox" id="completeCheck" onChange={e => { handleUpdate();} }/>
+                         <label htmlFor="completeCheck"> Task Completed? </label><br></br>
+                         <br />
+                         <button onClick={e => {handleDelete();} } >DELETE </button>
+                    </Card.Text>
+                    </Card.Body>
+               </Card>
          )
      }
 }
+
+export default React.memo(Todo);
