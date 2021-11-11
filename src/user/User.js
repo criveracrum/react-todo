@@ -3,15 +3,31 @@ import { useResource } from 'react-request-hook';
 import { StateContext } from '../Contexts';
 import { Link } from 'react-navi'
 import { Card } from 'react-bootstrap'
+import TodoList from '../todo/TodoList';
 
 export default function User ({username, id}) {
     const { state, dispatch } = useContext(StateContext)
-    const {todos} = state
 
 
-    useEffect(() => {
-        dispatch({type: 'USER_TODO', id: id})
+    const [ todos, getTodos ] = useResource(() => ({
+      url: '/todos',
+      method: 'get'
+      }))
+      useEffect(getTodos, [])
+
+      useEffect(() => {
+        if (todos && todos.data) {
+            dispatch({ type: 'FETCH_TODOS', todos: todos.data.reverse() })
+        }
         }, [todos])
+
+  useEffect(() => {
+    dispatch({type: 'USER_TODO', creatorID: id})
+    }, [todos])
+
+
+
+  const { data, isLoading } = todos;
 
     return (
         <Card>
@@ -20,6 +36,7 @@ export default function User ({username, id}) {
              </Card.Title>
              <Card.Text>
                   <div>{id}</div>
+                  <TodoList />
              </Card.Text>
              </Card.Body>
         </Card>

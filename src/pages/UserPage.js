@@ -11,19 +11,16 @@ import Todo from '../todo/Todo'
 export default function UserPage ({ id }) {
 
     const { state, dispatch } = useContext(StateContext)
-    const {todos} = state
+    
     const [ user, getUser ] = useResource(() => ({
         url: `/users/${id}`,
         method: 'get'
     }))
+   
     
     useEffect(getUser, [id])
 
-    useEffect(() => {
-        dispatch({type: 'USER_TODO', id: id})
-        }, [todos])
-
-
+   
 
     return (
         <div>
