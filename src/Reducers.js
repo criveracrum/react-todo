@@ -10,6 +10,15 @@ function userReducer (state, action) {
     }
 }
 
+function usersReducer (state, action) {
+    switch (action.type) {
+        case 'FETCH_USERS':
+            return action.users
+        default:
+            return state;
+    }
+}
+
 function todoReducer (state, action) {
     switch (action.type) {
         case 'CREATE_TODO':
@@ -36,6 +45,8 @@ function todoReducer (state, action) {
              
         case 'DELETE_TODO':
             return state.filter((todo) => todo.id !== action.id);
+        case 'USER_TODO':
+            return state.filter((todo) => todo.creatorID !== action.id);
         case 'FETCH_TODOS':
             return action.todos
         default:
@@ -47,6 +58,7 @@ function todoReducer (state, action) {
 export default function appReducer (state, action) {
     return {
         user: userReducer(state.user, action),
+        users: usersReducer(state.users, action),
         todos: todoReducer(state.todos, action)
     }
 }

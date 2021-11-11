@@ -9,6 +9,8 @@ import { Container } from 'react-bootstrap';
 import HeaderBar from './pages/HeaderBar';
 import TodoPage from './pages/TodoPage';
 import HomePage from './pages/HomePage.js';
+import UsersPage from './pages/UsersPage';
+import UserPage from './pages/UserPage';
 
 
 function App() {
@@ -22,6 +24,12 @@ function App() {
     '/todos/create':route({ view: <CreateTodo /> }),
     '/todos/:id': route(req => {
         return { view: <TodoPage id={req.params.id} /> }
+    }),
+    '/users': route(req => {
+      return { view: <UsersPage/> }
+    }),
+    '/users/:id': route(req => {
+      return { view: <UserPage id={req.params.id}/> }
     }),
   })
 

@@ -6,7 +6,8 @@
       "description": "Please wash the dishes. They are filthy.",
       "dateCreated": "Mon Oct 18 2021",
       "dateCompleted": null,
-      "complete": false
+      "complete": false,
+      "creatorID": 1
     },
     {
       "id": 2,
@@ -14,7 +15,8 @@
       "description": "Do you homework for CSC436",
       "dateCreated": "Mon Oct 18 2021",
       "dateCompleted": "Wed Nov 10 2021",
-      "complete": true
+      "complete": true,
+      "creatorID": 1
     },
     {
       "title": "Workout",
@@ -22,7 +24,8 @@
       "dateCreated": "Mon Oct 18 2021",
       "complete": true,
       "dateCompleted": "Tue Oct 19 2021",
-      "id": 3
+      "id": 3,
+      "creatorID": 1
     },
     {
       "title": "Test Post",
