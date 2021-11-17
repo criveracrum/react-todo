@@ -5,6 +5,7 @@ import { Link } from 'react-navi'
 import { Card } from 'react-bootstrap'
 import TodoList from '../todo/TodoList';
 
+
 export default function User ({username, id}) {
     const { state, dispatch } = useContext(StateContext)
 
@@ -36,6 +37,7 @@ export default function User ({username, id}) {
              </Card.Title>
              <Card.Text>
                   <div>{id}</div>
+                  <Link href={`/users/${id}`}>User Page</Link>
                   <TodoList />
              </Card.Text>
              </Card.Body>
