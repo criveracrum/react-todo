@@ -6,17 +6,24 @@ import TodoList from '../todo/TodoList'
 
 export default function HomePage () {
     const { state, dispatch } = useContext(StateContext)
+   
     const [ todos, getTodos ] = useResource(() => ({
-        url: '/todos',
-        method: 'get'
-      }))
-      useEffect(getTodos, [])
+      url: '/todo',
+      method: 'get',
+      headers: {"Authorization": `${state.user.access_token}`}
+  }))
+      // useEffect(getTodos, [])
 
-      useEffect(() => {
-        if (todos && todos.data) {
-            dispatch({ type: 'FETCH_TODOS', todos: todos.data.reverse() })
-        }
-        }, [todos])
+      useEffect(() =>{
+        getTodos()
+    }, [state.user.access_token])
+
+    useEffect(() => {
+      if (todos && todos.isLoading === false && todos.data) {
+          dispatch({ type: 'FETCH_TODOS', todos: todos.data.todos.reverse() })
+              
+          }
+      }, [todos])
 
     const { data, isLoading } = todos;
     return (

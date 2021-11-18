@@ -12,16 +12,35 @@ export default function Register({show, handleClose}) {
     password: "", 
     passwordRepeat: ""
 })
-  const [ user, register ] = useResource((username, password) => ({
-    url: '/users',
-    method: 'post',
-    data: { username, password }
+
+const [ status, setStatus] = useState("")
+
+const [ user, register ] = useResource((username, password) => ({
+    url: 'auth/register',
+    method: 'post',
+    data: { username, password, 'passwordConfirmation': password }
   }))
+
   useEffect(() => {
     if (user && user.data) {
-        dispatch({ type: 'REGISTER', username: user.data[0].username })
+        dispatch({ type: 'REGISTER', username: user.data.username, access_token: user.data.access_token })
     }
 }, [user])
+
+useEffect(() => {
+    if (user && user.isLoading === false && (user.data || user.error)) {
+      if (user.error) {
+        console.log(user)
+        setStatus("Registration failed, please try again later.")
+        alert("fail")
+      } else {
+        console.log(user)
+        setStatus("Registration successful. You may now login.")
+        alert("success")
+      }
+        //dispatch({ type: 'REGISTER', username: user.data.username })
+    }
+  }, [user])
 
   return (
     <Modal show={show} onHide={handleClose}>

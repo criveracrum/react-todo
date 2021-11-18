@@ -17,7 +17,7 @@ export default function UserList () {
         </Card.Title>
         <Card.Text>
              <div>{t.id}</div>
-             <Link href={`/users/${t.id}`}>User Page</Link>
+             <Link href={`/users/${t._id}`}>User Page</Link>
         </Card.Text>
         </Card.Body>
    </Card>

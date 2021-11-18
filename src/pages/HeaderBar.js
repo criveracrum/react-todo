@@ -14,8 +14,8 @@ export default function HeaderBar () {
     const {user} = state;
 
     useEffect(() => {
-        if (user) {
-           document.title = `${user}’s Todos` 
+        if (user.username) {
+           document.title = `${user.username}’s Todos` 
          } else {
            document.title = 'Todos'
        }
@@ -28,7 +28,7 @@ export default function HeaderBar () {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
-               {user && <Nav.Link><Link href="/todos/create">Create New Todos</Link></Nav.Link>}
+               {user.username && <Nav.Link><Link href="/todos/create">Create New Todos</Link></Nav.Link>}
             </Nav>
             <React.Suspense fallback={"Loading..."}>   
               <UserBar/>

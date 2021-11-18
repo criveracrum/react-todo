@@ -15,7 +15,7 @@ import UserPage from './pages/UserPage';
 
 function App() {
   
-  const [ state, dispatch ] = useReducer(appReducer, { user: '', users:[], todos: []})
+  const [ state, dispatch ] = useReducer(appReducer, { user: {}, users:[], todos: []})
 
   
 

@@ -10,16 +10,20 @@ export default function UsersPage () {
 
     const { state, dispatch } = useContext(StateContext)
 
+    // const [ users, users ] = useResource(() => ({
+    //     url: `/users`,
+    //     method: 'get'
+    // }))
     const [ users, getUsers ] = useResource(() => ({
-        url: `/users`,
-        method: 'get'
-    }))
+                url: 'auth/users',
+                method: 'get'
+            }))
     
     useEffect(getUsers, [])
 
     useEffect(() => {
-        if (users && users.data) {
-            dispatch({ type: 'FETCH_USERS', users: users.data })
+        if (users && users.isLoading === false && users.data) {
+            dispatch({ type: 'FETCH_USERS', users: users.data.users })
         }
         }, [users])
 
