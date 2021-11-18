@@ -8,6 +8,7 @@ import TodoList from '../todo/TodoList';
 
 export default function User ({username, id}) {
     const { state, dispatch } = useContext(StateContext)
+    
 
 
     const [ todos, getTodos ] = useResource(() => ({
@@ -17,13 +18,15 @@ export default function User ({username, id}) {
       useEffect(getTodos, [])
 
       useEffect(() => {
-        if (todos && todos.data) {
+        if (todos && todos.data ) {
             dispatch({ type: 'FETCH_TODOS', todos: todos.data.reverse() })
         }
         }, [todos])
 
     useEffect(() => {
-      dispatch({type: 'USER_TODO', creator: username})
+      if (todos && todos.data) {
+        dispatch({type: 'USER_TODO', creator: username})
+      }
       }, [todos])
 
 

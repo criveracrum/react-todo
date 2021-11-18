@@ -48,7 +48,8 @@ function todoReducer (state, action) {
         case 'DELETE_TODO':
             return state.filter((todo) => todo.id !== action.id);
         case 'USER_TODO':
-            return state.filter((todo) => todo.user === action.user);
+            console.log(action.user)
+            return state.filter((todo) => todo.creator === action.creator);
         case 'FETCH_TODOS':
             return action.todos
         default:

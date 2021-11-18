@@ -8,6 +8,24 @@
       "dateCompleted": null,
       "creator": "Chad",
       "id": 1
+    },
+    {
+      "title": "New Post 2",
+      "description": "New New",
+      "dateCreated": "Wed Nov 17 2021",
+      "complete": false,
+      "dateCompleted": null,
+      "creator": "Chad",
+      "id": 2
+    },
+    {
+      "title": "Paul Teest",
+      "description": "TEST",
+      "dateCreated": "Wed Nov 17 2021",
+      "complete": false,
+      "dateCompleted": null,
+      "creator": "paul",
+      "id": 3
     }
   ],
   "users": [
