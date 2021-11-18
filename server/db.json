@@ -1,40 +1,13 @@
 {
   "todos": [
     {
-      "id": 1,
-      "title": "Dishes",
-      "description": "Please wash the dishes. They are filthy.",
-      "dateCreated": "Mon Oct 18 2021",
-      "dateCompleted": null,
+      "title": "Test",
+      "description": "Creator ID",
+      "dateCreated": "Wed Nov 17 2021",
       "complete": false,
-      "creatorID": 1
-    },
-    {
-      "id": 2,
-      "title": "Homework",
-      "description": "Do you homework for CSC436",
-      "dateCreated": "Mon Oct 18 2021",
-      "dateCompleted": "Wed Nov 10 2021",
-      "complete": true,
-      "creatorID": 1
-    },
-    {
-      "title": "Workout",
-      "description": "You know its good for your health.",
-      "dateCreated": "Mon Oct 18 2021",
-      "complete": true,
-      "dateCompleted": "Tue Oct 19 2021",
-      "id": 3,
-      "creatorID": 1
-    },
-    {
-      "title": "Test Post",
-      "description": "This is a newly created post.",
-      "dateCreated": "Wed Oct 20 2021",
-      "complete": true,
-      "dateCompleted": "Wed Oct 20 2021",
-      "id": 4,
-      "creatorID": 2
+      "dateCompleted": null,
+      "creator": "Chad",
+      "id": 1
     }
   ],
   "users": [
@@ -47,6 +20,21 @@
       "username": "Chad",
       "password": "test",
       "id": 2
+    },
+    {
+      "username": "Squish",
+      "password": "123",
+      "id": 3
+    },
+    {
+      "username": "TEST",
+      "password": "NEWPASS",
+      "id": 4
+    },
+    {
+      "username": "Squish1",
+      "password": "1234",
+      "id": 5
     }
   ]
 }

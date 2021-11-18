@@ -7,6 +7,7 @@ import { Card } from 'react-bootstrap'
 function Todo ({ title, description, dateCreated, complete, dateCompleted, id, index}) { 
     
      const {dispatch} = useContext(StateContext);
+     
 
      const [ delTodo, deleteTodo ] = useResource(() => ({
           url: `/todos/${id}`,
@@ -18,16 +19,26 @@ function Todo ({ title, description, dateCreated, complete, dateCompleted, id, i
           method: 'patch',
           data: { complete, dateCompleted}
       }))
+
+      useEffect(() => {
+          if (delTodo && delTodo.data && delTodo.isLoading === false) {
+               dispatch({type: "DELETE_TODO", id: id})
+          }
+      }, [delTodo])
      
      function handleDelete() {
           deleteTodo()
-          dispatch({type: "DELETE_TODO", id: id})
+          // dispatch({type: "DELETE_TODO", id: id})
      }
+     useEffect(() => {
+          if (upTodo && upTodo.data && upTodo.isLoading === false) {
+               dispatch({type: "TOGGLE_TODO", id: id})          }
+      }, [upTodo])
 
      function handleUpdate(){
           const now = new Date(Date.now());
           updateTodo({ complete: true, dateCompleted: now.toDateString()})
-          dispatch({type: "TOGGLE_TODO", id: id})
+          
      }
 
      

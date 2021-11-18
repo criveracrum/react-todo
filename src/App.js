@@ -17,7 +17,7 @@ function App() {
   
   const [ state, dispatch ] = useReducer(appReducer, { user: '', users:[], todos: []})
 
-  const {user} = state;
+  
 
   const routes = mount({
     '/': route({ view: <HomePage /> }),

@@ -1,6 +1,7 @@
 function userReducer (state, action) {
     switch (action.type) {
         case 'LOGIN':
+            return action.username
         case 'REGISTER':
             return action.username
         case 'LOGOUT':
@@ -31,7 +32,8 @@ function todoReducer (state, action) {
                     dateCreated: action.dateCreated, 
                     id: action.id,
                     dateCompleted: null,
-                    complete: false
+                    complete: false,
+                    creator: action.user
                     }
                 return [ newTodo, ...state ]
             }
@@ -46,7 +48,7 @@ function todoReducer (state, action) {
         case 'DELETE_TODO':
             return state.filter((todo) => todo.id !== action.id);
         case 'USER_TODO':
-            return state.filter((todo) => todo.creatorID === action.creatorID);
+            return state.filter((todo) => todo.user === action.user);
         case 'FETCH_TODOS':
             return action.todos
         default:

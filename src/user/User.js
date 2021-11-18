@@ -22,9 +22,9 @@ export default function User ({username, id}) {
         }
         }, [todos])
 
-  useEffect(() => {
-    dispatch({type: 'USER_TODO', creatorID: id})
-    }, [todos])
+    useEffect(() => {
+      dispatch({type: 'USER_TODO', creator: username})
+      }, [todos])
 
 
 

@@ -11,20 +11,20 @@ export default function CreateTodo () {
     const {state, dispatch} = useContext(StateContext)
     const {user} = state
 
-    const [todo , createTodo ] = useResource(({ title, description, dateCreated, complete, dateCompleted}) => ({
+    const [todo , createTodo ] = useResource(({ title, description, dateCreated, complete, dateCompleted, creator}) => ({
         url: '/todos',
         method: 'post',
-        data: { title, description, dateCreated, complete, dateCompleted}
+        data: { title, description, dateCreated, complete, dateCompleted, creator}
     }))
 
 
     function handleCreate () {
-        createTodo({ title, description, dateCreated, complete: false, dateCompleted: null})
+        createTodo({ title, description, dateCreated, complete: false, dateCompleted: null, creator: user})
 
     }
     useEffect(() => {
         if (todo && todo.data) {
-            dispatch({ type: 'CREATE_TODO', title: todo.data.title, description: todo.data.description, dateCreated: todo.data.dateCreated, id: todo.data.id })
+            dispatch({ type: 'CREATE_TODO', title: todo.data.title, description: todo.data.description, dateCreated: todo.data.dateCreated, id: todo.data.id, creator: user })
         }
     }, [todo])
 

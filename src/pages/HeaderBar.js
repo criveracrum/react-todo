@@ -15,9 +15,9 @@ export default function HeaderBar () {
 
     useEffect(() => {
         if (user) {
-           document.title = `${user}’s Blog` 
+           document.title = `${user}’s Todos` 
          } else {
-           document.title = 'Blog'
+           document.title = 'Todos'
        }
       }, [user])
 
@@ -34,11 +34,8 @@ export default function HeaderBar () {
               <UserBar/>
             </React.Suspense>
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-            <NavDropdown.Item href="/users">Users</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+            <NavDropdown.Item ><Link href="/users">Users</Link></NavDropdown.Item>
+  
           </NavDropdown>
       </Navbar.Collapse>
     </Container>
