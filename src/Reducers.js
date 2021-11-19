@@ -46,11 +46,13 @@ function todoReducer (state, action) {
         
             
         case 'TOGGLE_TODO':
+            console.log(action.id)
             const now = new Date(Date.now());
             return state.map((todo) => todo._id === action.id ? {...todo, complete: !todo.complete,  dateCompleted: now.toDateString()}
             : todo)
              
         case 'DELETE_TODO':
+            console.log(action.id)
             return state.filter((todo) => todo._id !== action.id);
         case 'USER_TODO':
             console.log(action.user)

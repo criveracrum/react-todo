@@ -41,7 +41,7 @@ export default function User ({username, _id}) {
              <Card.Title>{username}
              </Card.Title>
              <Card.Text>
-                  <div>{_id}</div>
+                  <div>User ID: {_id}</div>
                   <Link href={`/users/${_id}`}>User Page</Link>
                   <TodoList />
              </Card.Text>

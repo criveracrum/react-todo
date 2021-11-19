@@ -30,6 +30,7 @@ function Todo ({ title, description, dateCreated, complete, dateCompleted, id, i
                     
                } else {
                     dispatch({type: "DELETE_TODO", id: delTodo.data.id})
+                    
                }
           } 
       }, [delTodo])

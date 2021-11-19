@@ -35,8 +35,8 @@ export default function CreateTodo () {
     // }, [todo])
     useEffect(() => {
                 if (todo && todo.data) {
-                    dispatch({ type: 'CREATE_TODO', title: todo.data.title, description: todo.data.description, dateCreated: todo.data.dateCreated, id: todo.data.id, creator: user.username })
-                    navigation.navigate(`/`)
+                    dispatch({ type: 'CREATE_TODO', title: todo.data.title, description: todo.data.description, dateCreated: todo.data.dateCreated, id: todo.data.id, creator: todo.data.creator })
+                    navigation.navigate(`/todos/${todo.data.id}`)
                 }
             }, [todo])
 
