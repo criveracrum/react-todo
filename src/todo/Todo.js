@@ -23,8 +23,12 @@ function Todo ({ title, description, dateCreated, complete, dateCompleted, id, i
       }))
 
       useEffect(() => {
-          if (delTodo && delTodo.data && delTodo.isLoading === false) {
-               dispatch({type: "DELETE_TODO", id: delTodo.data._id})
+          if (delTodo && (delTodo.data || delTodo.error) && delTodo.isLoading === false) {
+               if (delTodo.error){
+                    alert("Unauthorized. This is not YOUR Todo")
+               } else {
+                    dispatch({type: "DELETE_TODO", id: delTodo.data._id})
+               }
           } 
       }, [delTodo])
      
@@ -33,8 +37,13 @@ function Todo ({ title, description, dateCreated, complete, dateCompleted, id, i
           // dispatch({type: "DELETE_TODO", id: id})
      }
      useEffect(() => {
-          if (upTodo && upTodo.data && upTodo.isLoading === false) {
-               dispatch({type: "TOGGLE_TODO", id: upTodo.data._id})          }
+          if (upTodo && (upTodo.data || upTodo.error) && upTodo.isLoading === false) {
+               if (upTodo.error){
+                    alert("Unauthorized. This is not YOUR Todo")
+               } else {
+                    dispatch({type: "TOGGLE_TODO", id: upTodo.data._id})  
+               }
+          }
       }, [upTodo])
 
      function handleUpdate(){

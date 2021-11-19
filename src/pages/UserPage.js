@@ -13,18 +13,18 @@ export default function UserPage ({ id }) {
     const { state, dispatch } = useContext(StateContext)
     
     const [ user, getUser ] = useResource(() => ({
-        url: `/auth/user/${id}`,
+        url: `/auth/users/${id}`,
         method: 'get'
     }))
    
     
     useEffect(getUser, [id])
-
+    
    
 
     return (
         <div>
-            {(user && user.data)
+            {(user && user.data && user.isLoading === false)
                 ? <User {...user.data} /> 
                 : 'Loading...'
             }

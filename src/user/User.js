@@ -6,26 +6,28 @@ import { Card } from 'react-bootstrap'
 import TodoList from '../todo/TodoList';
 
 
-export default function User ({username, id}) {
+
+export default function User ({username, _id}) {
     const { state, dispatch } = useContext(StateContext)
     
-
-
-    const [ todos, getTodos ] = useResource(() => ({
-      url: '/todo',
-      method: 'get'
-      }))
-      useEffect(getTodos, [])
-
-      useEffect(() => {
-        if (todos && todos.data ) {
-            dispatch({ type: 'FETCH_TODOS', todos: todos.data.todos })
-        }
-        }, [todos])
+      const [ todos, getTodos ] = useResource(() => ({
+        url: '/todo',
+        method: 'get'
+    }))
+    useEffect(() =>{
+      getTodos()
+  }, [])
 
     useEffect(() => {
-      if (todos && todos.data) {
-        dispatch({type: 'USER_TODO', creator: username})
+      if (todos && todos.isLoading === false && todos.data) {
+          dispatch({ type: 'FETCH_TODOS', todos: todos.data.todos.reverse() })
+          console.log(_id)
+          }
+      }, [todos])
+
+    useEffect(() => {
+      if (todos && todos.data && todos.isLoading === false) {
+          dispatch({type: 'USER_TODO', creator: _id})
       }
       }, [todos])
 
@@ -39,8 +41,8 @@ export default function User ({username, id}) {
              <Card.Title>{username}
              </Card.Title>
              <Card.Text>
-                  <div>{id}</div>
-                  <Link href={`/users/${id}`}>User Page</Link>
+                  <div>{_id}</div>
+                  <Link href={`/users/${_id}`}>User Page</Link>
                   <TodoList />
              </Card.Text>
              </Card.Body>
