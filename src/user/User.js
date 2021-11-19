@@ -12,14 +12,14 @@ export default function User ({username, id}) {
 
 
     const [ todos, getTodos ] = useResource(() => ({
-      url: '/todos',
+      url: '/todo',
       method: 'get'
       }))
       useEffect(getTodos, [])
 
       useEffect(() => {
         if (todos && todos.data ) {
-            dispatch({ type: 'FETCH_TODOS', todos: todos.data.reverse() })
+            dispatch({ type: 'FETCH_TODOS', todos: todos.data.todos })
         }
         }, [todos])
 

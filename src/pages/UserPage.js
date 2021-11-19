@@ -13,7 +13,7 @@ export default function UserPage ({ id }) {
     const { state, dispatch } = useContext(StateContext)
     
     const [ user, getUser ] = useResource(() => ({
-        url: `/users/${id}`,
+        url: `/auth/user/${id}`,
         method: 'get'
     }))
    

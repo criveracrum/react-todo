@@ -6,24 +6,26 @@ import { Card } from 'react-bootstrap'
 
 function Todo ({ title, description, dateCreated, complete, dateCompleted, id, index}) { 
     
-     const {dispatch} = useContext(StateContext);
+     const {state, dispatch} = useContext(StateContext)
      
 
      const [ delTodo, deleteTodo ] = useResource(() => ({
-          url: `/todos/${id}`,
-          method: 'delete'
+          url: `/todo/${id}`,
+          method: 'delete',
+          headers: {"Authorization": `${state.user.access_token}`},
         }))
 
-     const [upTodo , updateTodo ] = useResource(({ complete, dateCompleted}) => ({
-          url: `/todos/${id}`,
+     const [upTodo , updateTodo ] = useResource(({ completed, dateComplete}) => ({
+          url: `/todo/${id}`,
           method: 'patch',
-          data: { complete, dateCompleted}
+          headers: {"Authorization": `${state.user.access_token}`},
+          data: { 'complete' : completed, 'dateCompleted' : dateComplete}
       }))
 
       useEffect(() => {
           if (delTodo && delTodo.data && delTodo.isLoading === false) {
-               dispatch({type: "DELETE_TODO", id: id})
-          }
+               dispatch({type: "DELETE_TODO", id: delTodo.data._id})
+          } 
       }, [delTodo])
      
      function handleDelete() {
@@ -32,12 +34,12 @@ function Todo ({ title, description, dateCreated, complete, dateCompleted, id, i
      }
      useEffect(() => {
           if (upTodo && upTodo.data && upTodo.isLoading === false) {
-               dispatch({type: "TOGGLE_TODO", id: id})          }
+               dispatch({type: "TOGGLE_TODO", id: upTodo.data._id})          }
       }, [upTodo])
 
      function handleUpdate(){
           const now = new Date(Date.now());
-          updateTodo({ complete: true, dateCompleted: now.toDateString()})
+          updateTodo({ completed: true, dateComplete: now.toDateString()})
           
      }
 
