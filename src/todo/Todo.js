@@ -3,12 +3,13 @@ import { useResource } from 'react-request-hook';
 import { StateContext } from '../Contexts';
 import { Link } from 'react-navi'
 import { Card } from 'react-bootstrap'
+import { useNavigation } from 'react-navi'
 
 function Todo ({ title, description, dateCreated, complete, dateCompleted, id, index}) { 
     
      const {state, dispatch} = useContext(StateContext)
      const {user} = state
-     
+     const navigation = useNavigation()
 
      const [ delTodo, deleteTodo ] = useResource(() => ({
           url: `/todo/${id}`,
@@ -30,7 +31,7 @@ function Todo ({ title, description, dateCreated, complete, dateCompleted, id, i
                     
                } else {
                     dispatch({type: "DELETE_TODO", id: delTodo.data.id})
-                    
+                    navigation.navigate(`/`) 
                }
           } 
       }, [delTodo])
@@ -45,7 +46,8 @@ function Todo ({ title, description, dateCreated, complete, dateCompleted, id, i
                     alert("Unauthorized. This is not YOUR Todo")
                     
                } else {
-                    dispatch({type: "TOGGLE_TODO", id: upTodo.data.id})  
+                    dispatch({type: "TOGGLE_TODO", id: upTodo.data.id}) 
+                    navigation.navigate(`/`) 
                }
           }
       }, [upTodo])
