@@ -7,18 +7,19 @@ import { Card } from 'react-bootstrap'
 function Todo ({ title, description, dateCreated, complete, dateCompleted, id, index}) { 
     
      const {state, dispatch} = useContext(StateContext)
+     const {user} = state
      
 
      const [ delTodo, deleteTodo ] = useResource(() => ({
           url: `/todo/${id}`,
           method: 'delete',
-          headers: {"Authorization": `${state.user.access_token}`},
+          headers: {"Authorization": `${user.access_token}`},
         }))
 
      const [upTodo , updateTodo ] = useResource(({ completed, dateComplete}) => ({
           url: `/todo/${id}`,
           method: 'patch',
-          headers: {"Authorization": `${state.user.access_token}`},
+          headers: {"Authorization": `${user.access_token}`},
           data: { 'complete' : completed, 'dateCompleted' : dateComplete}
       }))
 
@@ -26,6 +27,7 @@ function Todo ({ title, description, dateCreated, complete, dateCompleted, id, i
           if (delTodo && (delTodo.data || delTodo.error) && delTodo.isLoading === false) {
                if (delTodo.error){
                     alert("Unauthorized. This is not YOUR Todo")
+                    
                } else {
                     dispatch({type: "DELETE_TODO", id: delTodo.data._id})
                }
@@ -40,6 +42,7 @@ function Todo ({ title, description, dateCreated, complete, dateCompleted, id, i
           if (upTodo && (upTodo.data || upTodo.error) && upTodo.isLoading === false) {
                if (upTodo.error){
                     alert("Unauthorized. This is not YOUR Todo")
+                    
                } else {
                     dispatch({type: "TOGGLE_TODO", id: upTodo.data._id})  
                }
@@ -84,7 +87,7 @@ function Todo ({ title, description, dateCreated, complete, dateCompleted, id, i
                          <br />
                          <i>Date Created:<b>{dateCreated}</b></i>
                          <br />
-                         <input type="checkbox" id="completeCheck" onChange={e => { handleUpdate();} }/>
+                         <input type="checkbox" id="completeCheck" checked={complete} onChange={e => { handleUpdate();} }/>
                          <label htmlFor="completeCheck"> Task Completed? </label><br></br>
                          <br />
                          <button onClick={e => {handleDelete();} } >DELETE </button>
