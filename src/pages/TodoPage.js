@@ -23,7 +23,7 @@ export default function TodoPage ({ id }) {
     return (
         <div>
             {(todo && todo.data)
-                ? <Todo {...todo.data} id={todo.data._id} index={0}/>
+                ? <Todo {...todo.data} index={0}/>
                 : 'Loading...'
             }
             <div><Link href="/">Go back</Link></div>

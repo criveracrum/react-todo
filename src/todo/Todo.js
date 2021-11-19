@@ -29,7 +29,7 @@ function Todo ({ title, description, dateCreated, complete, dateCompleted, id, i
                     alert("Unauthorized. This is not YOUR Todo")
                     
                } else {
-                    dispatch({type: "DELETE_TODO", id: delTodo.data._id})
+                    dispatch({type: "DELETE_TODO", id: delTodo.data.id})
                }
           } 
       }, [delTodo])
@@ -44,7 +44,7 @@ function Todo ({ title, description, dateCreated, complete, dateCompleted, id, i
                     alert("Unauthorized. This is not YOUR Todo")
                     
                } else {
-                    dispatch({type: "TOGGLE_TODO", id: upTodo.data._id})  
+                    dispatch({type: "TOGGLE_TODO", id: upTodo.data.id})  
                }
           }
       }, [upTodo])
